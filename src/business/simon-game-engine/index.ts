@@ -1,1 +1,1 @@
-export * from './simon-game-engine';
+export * from './simon-game.engine';
