@@ -1,0 +1,40 @@
+simon-quarter {
+  &:nth-child(1){
+    top:0;
+    left:0;
+    border-radius:100% 0 0 0;
+  }
+
+  &:nth-child(2){
+    top:0;
+    right:0;
+    border-radius:0 100% 0 0 ;
+  }
+
+  &:nth-child(3) {
+    bottom:0;
+    left:0;
+    border-radius:0 0 0 100%;
+  }
+
+  &:nth-child(4) {
+    bottom:0;
+    right:0;
+    border-radius:0 0 100% 0 ;
+  }
+
+  // Vertical border
+  &:nth-child(4), &:nth-child(2) {
+    border-left: solid 10px #000;
+  }
+
+  // Horizontal border
+  &:nth-child(4), &:nth-child(3) {
+    border-top: solid 10px #000;
+  }
+}
+
+:host{
+  position: relative;
+  display: block;
+}

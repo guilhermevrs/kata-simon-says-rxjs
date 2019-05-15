@@ -1,6 +1,6 @@
 {
   "name": "kata-simon-says-rxjs",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,6 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "author": "Guilherme Schwade <guilhermevrs@gmail.com>",
   "private": true,
   "dependencies": {
     "@angular/animations": "~7.2.0",

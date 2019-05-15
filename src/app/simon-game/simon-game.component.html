@@ -1,0 +1,25 @@
+<simon-quarter
+  [lightUp]="lightRedUp$ | async"
+  color="red"
+  (click)="quarterClicked('red')">
+</simon-quarter>
+<simon-quarter
+  [lightUp]="lightBlueUp$ | async"
+  color="blue"
+  (click)="quarterClicked('blue')">
+</simon-quarter>
+<simon-quarter
+  [lightUp]="lightOrangeUp$ | async"
+  color="orange"
+  (click)="quarterClicked('orange')">
+</simon-quarter>
+<simon-quarter
+  [lightUp]="lightGreenUp$ | async"
+  color="green"
+  (click)="quarterClicked('green')">
+</simon-quarter>
+<simon-center
+  [isInProgress]="inProgress"
+  [turns]="engine.turns$ | async"
+  (click)="centerClicked($event)">
+</simon-center>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SimonGameEngine } from '@business';
 
 @Component({
   selector: 'kata-root',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'kata-simon-says-rxjs';
+  constructor(public engine: SimonGameEngine) {}
 }

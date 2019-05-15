@@ -1,0 +1,32 @@
+@mixin glow-shadow($color) {
+  .glow {
+    box-shadow: 0 0 60px 30px #fff, 0 0 100px 60px $color, 0 0 140px 82px #40acff
+  }
+}
+
+@mixin quarter($color) {
+  background-color: $color;
+  @include glow-shadow($color);
+}
+
+.glow {
+  margin: 0 auto;
+  border-radius: 50%;
+}
+
+:host {
+  position:absolute;
+	width:50%;
+	height:50%;
+  transition:background-color 0.2s ease-in-out;
+  border: solid 2px #000;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+:host(.red-quarter) { @include quarter(red) }
+:host(.blue-quarter) { @include quarter(blue) }
+:host(.orange-quarter) { @include quarter(orange) }
+:host(.green-quarter) { @include quarter(green) }
