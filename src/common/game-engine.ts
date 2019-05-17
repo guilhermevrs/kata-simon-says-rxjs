@@ -11,15 +11,15 @@ export interface GameEngine {
   /** Stream that indicates how many turns you have done */
   turns$: Observable<number>;
 
+  /** Stream that indicates if the engine is running or not */
+  running$: Observable<boolean>;
+
   /** Stream that indicates if an error has been commited */
   error$: Observable<boolean>;
 
-  /** Starts the game */
-  startGame();
+  /** ON/OFF toggles the engine */
+  toggle();
 
-  /** Ends the game */
-  endGame();
-
-  /** Next color for simon */
+  /** Next color from user */
   next(color: ColorsEnum);
 }

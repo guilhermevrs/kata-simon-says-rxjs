@@ -19,7 +19,7 @@
   (click)="quarterClicked('green')">
 </simon-quarter>
 <simon-center
-  [isInProgress]="inProgress"
+  [isRunning]="engine.running$ | async"
   [turns]="engine.turns$ | async"
   (click)="centerClicked($event)">
 </simon-center>

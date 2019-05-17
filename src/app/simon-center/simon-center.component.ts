@@ -8,7 +8,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
 })
 export class SimonCenterComponent implements OnInit {
 
-  @Input() isInProgress: boolean;
+  @Input() isRunning: boolean;
 
   @Input() turns: number = 0;
 

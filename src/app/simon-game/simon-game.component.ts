@@ -12,8 +12,6 @@ import { map, startWith } from 'rxjs/operators';
 })
 export class SimonGameComponent implements OnInit {
 
-  inProgress: boolean = false;
-
   lightRedUp$: Observable<boolean>;
   lightBlueUp$: Observable<boolean>;
   lightOrangeUp$: Observable<boolean>;
@@ -51,18 +49,11 @@ export class SimonGameComponent implements OnInit {
   }
 
   centerClicked() {
-    if (!this.inProgress) {
-      this.engine.startGame();
-    } else {
-      this.engine.endGame();
-    }
-    this.inProgress = !this.inProgress;
+    this.engine.toggle();
   }
 
   quarterClicked(color: ColorsEnum) {
-    if (this.inProgress) {
-      this.engine.next(color);
-    }
+    this.engine.next(color);
   }
 
 }
