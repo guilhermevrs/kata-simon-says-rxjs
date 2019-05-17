@@ -23,3 +23,80 @@ To run tests of the engine, run:
 ```
 yarn kata:test
 ```
+
+## Constraints
+  
+  1. The streams ``running$``, ``turns$`` and ``error$`` should emit its latest value for any subscription.
+
+  2. Any stream accessible from outside of the engine must be an ``Observable`` (not a ``Subject``).
+
+  3. The engine is either on RUNNING or NOT RUNNING state
+
+  4. When the engine is created, it's on RUNNING state
+
+  5. The engine should avoid as much as possible to have variables (public or not) not defined by the ``GameEngine``
+
+  6. Intervals should use the ``animationFrame`` scheduler
+
+## Objectives
+  
+  1. When on NOT RUNNING state, the ``running$`` stream must emit ``false``
+
+  2. When on NOT RUNNING state, the ``error$`` stream must emit ``false``
+
+  3. If on NOT RUNNING state, the method ``toggle()`` pass the engine to RUNNING state. Otherwise, it passes to NOT RUNNING state
+
+  4. When on RUNNING state, the ``running$`` stream must emit ``true``
+
+  5. When passing from NOT RUNNING to RUNNING, the ``turns$`` stream must emit ``1``
+
+  6. When RUNNING, The ``simon$`` stream should generate ``N`` emitions of random colors (``ColorsEnum``), where ``N`` is the last number emitted by ``turns$``.
+
+  7. When ``simon$`` is about to emit ``N`` colors, it should emit all the ``N - 1`` colors it has emitted plus a new random one, as shown in the example below.
+
+  ```typescript
+  // 1
+  turns$: '1'
+  simon$: 'RED'
+  // 2
+  turns$: '2'
+  simon$: 'RED-GREEN'
+  // 3
+  turns$: '3'
+  simon$: 'RED-GREEN-BLUE'
+  // ...
+  // N - 1
+  turns$: 'N-1'
+  simon$: 'RED-GREEN-BLUE-(...)-ORANGE'
+  // N
+  turns$: 'N'
+  simon$: 'RED-GREEN-BLUE-(...)-ORANGE-RED'
+  ```
+
+  8. Every emition of ``simon$`` must be timed by ``400ms``
+
+  9. The ``next`` method should make ``simon$`` emit the same color passed by argument (no matter the engine state).
+
+  10. When RUNNING and ``simon$`` has finished emitting its N colors, if ``next`` method is called N times in the same order as ``simon$`` sequence, ``turns$`` should emit the next integer, as shown in the example
+
+  ```typescript
+  turns$: N
+  simon$: 'RED-GREEN-ORANGE-(...)-GREEN-BLUE'
+  next('RED');
+  next('GREEN');
+  next('ORANGE');
+  // (...)
+  next('GREEN');
+  next('BLUE');
+  turns$: N+1
+  ```
+
+  11. When RUNNING and ``simon$`` has finished emitting its N colors, if ``next`` method is called with the wrong color, ``error$`` should emit ``true`` and ``600ms`` after, emit ``false```.
+
+  12. When RUNNING and ``simon$`` has finished emitting its N colors, if ``next`` method is called with the wrong color, 400ms after emiting the color passed to ``next``, ``simon$`` should re-emit its sequence.
+
+## Bonus
+
+  13. Configure the engine with the max number of turns. When ``turns$`` emits this value, ``simon$`` should emit ``RED-GREEN-ORANGE-BLUE`` 3 times with an interval of ``400ms`` between each color. After that, engine goes into NOT RUNNING state.
+
+  14. Makes ``simon$`` to repeat the sequence if the ``next`` method is not called yet after 3 seconds of the end of the sequence
