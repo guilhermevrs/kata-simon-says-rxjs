@@ -1,5 +1,7 @@
-import { Component, ChangeDetectionStrategy, Input, HostBinding } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, HostBinding, HostListener } from '@angular/core';
 import { ColorsEnum } from '@common';
+import { Observable, Subject, timer, animationFrameScheduler } from 'rxjs';
+import { switchMap, map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'simon-quarter',
@@ -8,6 +10,10 @@ import { ColorsEnum } from '@common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SimonQuarterComponent {
+
+  internalLight$: Observable<boolean>;
+
+  private internalTrigger: Subject<boolean> = new Subject<boolean>()
 
   @Input() color: ColorsEnum;
 
@@ -23,9 +29,23 @@ export class SimonQuarterComponent {
   @HostBinding('class.green-quarter')
   get isGreenQuarter() { return this.color === ColorsEnum.GREEN }
 
+  @HostListener('click')
+  hostClick() {
+    this.internalTrigger.next();
+  }
+
   @Input()
   lightUp: boolean = false;
 
-  constructor() { }
+  constructor() {
+    this.internalLight$ = this.internalTrigger.pipe(
+      switchMap(() =>
+        timer(150, animationFrameScheduler).pipe(
+          map(() => false),
+          startWith(true)
+        )
+      )
+    )
+  }
 
 }

@@ -1,1 +1,1 @@
-<div class="glow" *ngIf="lightUp"></div>
+<div class="glow" *ngIf="lightUp || (internalLight$ | async)"></div>

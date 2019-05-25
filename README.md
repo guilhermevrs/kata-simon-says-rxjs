@@ -100,3 +100,5 @@ yarn kata:test
   13. Configure the engine with the max number of turns. When ``turns$`` emits this value, ``simon$`` should emit ``RED-GREEN-ORANGE-BLUE`` 3 times with an interval of ``400ms`` between each color. After that, engine goes into NOT RUNNING state.
 
   14. Makes ``simon$`` to repeat the sequence if the ``next`` method is not called yet after 3 seconds of the end of the sequence
+
+  15. Makes ``simon$`` say, as well, the color passed by ``next`` method, controlling then all the ui.
