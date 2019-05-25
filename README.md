@@ -50,7 +50,7 @@ yarn kata:test
 
   5. When passing from NOT RUNNING to RUNNING, the ``turns$`` stream must emit ``1``
 
-  6. When RUNNING, The ``simon$`` stream should generate ``N`` emitions of random colors (``ColorsEnum``), where ``N`` is the last number emitted by ``turns$``.
+  6. When RUNNING, the ``simon$`` stream should generate ``N`` emitions of random colors (``ColorsEnum``), where ``N`` is the last number emitted by ``turns$``.
 
   7. When ``simon$`` is about to emit ``N`` colors, it should emit all the ``N - 1`` colors it has emitted plus a new random one, as shown in the example below.
 
@@ -75,9 +75,7 @@ yarn kata:test
 
   8. Every emition of ``simon$`` must be timed by ``400ms``
 
-  9. The ``next`` method should make ``simon$`` emit the same color passed by argument (no matter the engine state).
-
-  10. When RUNNING and ``simon$`` has finished emitting its N colors, if ``next`` method is called N times in the same order as ``simon$`` sequence, ``turns$`` should emit the next integer, as shown in the example
+  9. When RUNNING and ``simon$`` has finished emitting its N colors, if ``next`` method is called N times in the same order as ``simon$`` sequence, ``turns$`` should emit the next integer, as shown in the example
 
   ```typescript
   turns$: N
@@ -91,14 +89,14 @@ yarn kata:test
   turns$: N+1
   ```
 
-  11. When RUNNING and ``simon$`` has finished emitting its N colors, if ``next`` method is called with the wrong color, ``error$`` should emit ``true`` and ``600ms`` after, emit ``false```.
+  10. When RUNNING and ``simon$`` has finished emitting its N colors, if ``next`` method is called with the wrong color, ``error$`` should emit ``true`` and ``400ms`` after, emit ``false```.
 
-  12. When RUNNING and ``simon$`` has finished emitting its N colors, if ``next`` method is called with the wrong color, 400ms after emiting the color passed to ``next``, ``simon$`` should re-emit its sequence.
+  11. When RUNNING and ``simon$`` has finished emitting its N colors, if ``next`` method is called with the wrong color, 400ms after emiting the color passed to ``next``, ``simon$`` should re-emit its sequence.
 
 ## Bonus
 
-  13. Configure the engine with the max number of turns. When ``turns$`` emits this value, ``simon$`` should emit ``RED-GREEN-ORANGE-BLUE`` 3 times with an interval of ``400ms`` between each color. After that, engine goes into NOT RUNNING state.
+  12. Configure the engine with the max number of turns. When ``turns$`` emits this value, ``simon$`` should emit ``RED-GREEN-ORANGE-BLUE`` 3 times with an interval of ``400ms`` between each color. After that, engine goes into NOT RUNNING state.
 
-  14. Makes ``simon$`` to repeat the sequence if the ``next`` method is not called yet after 3 seconds of the end of the sequence
+  13. Makes ``simon$`` to repeat the sequence if the ``next`` method is not called yet after 3 seconds of the end of the sequence
 
-  15. Makes ``simon$`` say, as well, the color passed by ``next`` method, controlling then all the ui.
+  14. The ``next`` method should make ``simon$`` emit the same color passed by argument (no matter the engine state).
