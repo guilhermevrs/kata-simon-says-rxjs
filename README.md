@@ -32,9 +32,9 @@ yarn kata:test
 
   3. The engine is either on RUNNING or NOT RUNNING state
 
-  4. When the engine is created, it's on RUNNING state
+  4. When the engine is created, it's on NOT RUNNING state
 
-  5. The engine should avoid as much as possible to have variables (public or not) not defined by the ``GameEngine``
+  5. The engine should avoid as much as possible to have variables (public or not) not defined by the ``GameEngine`` interface
 
   6. Intervals should use the ``animationFrame`` scheduler
 
@@ -89,11 +89,11 @@ yarn kata:test
   turns$: N+1
   ```
 
-  10. When RUNNING and ``simon$`` has finished emitting its N colors, if ``next`` method is called with the wrong color, ``error$`` should emit ``true`` and ``400ms`` after, emit ``false```.
-
-  11. When RUNNING and ``simon$`` has finished emitting its N colors, if ``next`` method is called with the wrong color, 400ms after emiting the color passed to ``next``, ``simon$`` should re-emit its sequence.
+  10. When RUNNING and ``simon$`` has finished emitting its N colors, if ``next`` method is called with the wrong color, ``error$`` should emit ``true`` and ``400ms`` after, emit ``false``.
 
 ## Bonus
+
+  11. When RUNNING and ``simon$`` has finished emitting its N colors, if ``next`` method is called with the wrong color, 400ms after emiting the color passed to ``next``, ``simon$`` should re-emit its sequence.
 
   12. Configure the engine with the max number of turns. When ``turns$`` emits this value, ``simon$`` should emit ``RED-GREEN-ORANGE-BLUE`` 3 times with an interval of ``400ms`` between each color. After that, engine goes into NOT RUNNING state.
 
