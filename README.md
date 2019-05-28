@@ -44,9 +44,9 @@ yarn kata:test
 
   2. When on NOT RUNNING state, the ``error$`` stream must emit ``false``
 
-  3. If on NOT RUNNING state, the method ``toggle()`` pass the engine to RUNNING state. Otherwise, it passes to NOT RUNNING state
+  3. When on RUNNING state, the ``running$`` stream must emit ``true``
 
-  4. When on RUNNING state, the ``running$`` stream must emit ``true``
+  4. If on NOT RUNNING state, the method ``toggle()`` pass the engine to RUNNING state. Otherwise, it passes to NOT RUNNING state
 
   5. When passing from NOT RUNNING to RUNNING, the ``turns$`` stream must emit ``1``
 
